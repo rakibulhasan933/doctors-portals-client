@@ -1,24 +1,24 @@
 import React from 'react';
-import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useCreateUserWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import { useForm } from "react-hook-form";
 import Loading from '../Shared/Loading';
 import { Link } from 'react-router-dom';
 
 
-const Login = () => {
+const SignUp = () => {
 	const [
-		signInWithEmailAndPassword,
+		createUserWithEmailAndPassword,
 		user,
 		loading,
 		error,
-	] = useSignInWithEmailAndPassword(auth);
+	] = useCreateUserWithEmailAndPassword(auth);
 	let signInError;
 
 	const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
 	const { register, handleSubmit, formState: { errors } } = useForm();
 	const onSubmit = data => {
-		signInWithEmailAndPassword(data.email, data.password)
+		createUserWithEmailAndPassword(data.email, data.password)
 	};
 
 	if (loading || gLoading) {
@@ -35,9 +35,21 @@ const Login = () => {
 		<div className='flex items-center justify-center h-screen'>
 			<div className="shadow-xl card w-96 bg-base-100 ">
 				<div className="card-body">
-					<h2 className="mb-3 text-2xl font-bold text-center">Login</h2>
+					<h2 className="mb-3 text-2xl font-bold text-center">Sign Up</h2>
 					<form onSubmit={handleSubmit(onSubmit)}>
 						<div className="w-full max-w-xs form-control">
+							<label className="label">
+								<span className="label-text">Name</span>
+							</label>
+							<input type="text" className="w-full max-w-xs input input-bordered" {...register("name", {
+								required: {
+									value: true,
+									message: 'Name is Required'
+								}
+							})} />
+							<label className="label">
+								{errors.name?.type === 'required' && <span className="text-red-500 label-text-alt">{errors.name?.message}</span>}
+							</label>
 							<label className="label">
 								<span className="label-text">Email</span>
 							</label>
@@ -52,8 +64,8 @@ const Login = () => {
 								}
 							})} />
 							<label className="label">
-								{errors.email?.type === 'required' && <span className="text-red-500 label-text-alt">{errors.email.message}</span>}
-								{errors.email?.type === 'pattern' && <span className="text-red-500 label-text-alt">{errors.email.message}</span>}
+								{errors.email?.type === 'required' && <span className="text-red-500 label-text-alt">{errors.email?.message}</span>}
+								{errors.email?.type === 'pattern' && <span className="text-red-500 label-text-alt">{errors.email?.message}</span>}
 							</label>
 							<label className="label">
 								<span className="label-text">Password</span>
@@ -69,14 +81,14 @@ const Login = () => {
 								}
 							})} />
 							<label className="label">
-								{errors.password?.type === 'required' && <span className="text-red-500 label-text-alt">{errors.password.message}</span>}
-								{errors.password?.type === 'minLength' && <span className="text-red-500 label-text-alt">{errors.password.message}</span>}
+								{errors.password?.type === 'required' && <span className="text-red-500 label-text-alt">{errors.password?.message}</span>}
+								{errors.password?.type === 'minLength' && <span className="text-red-500 label-text-alt">{errors.password?.message}</span>}
 							</label>
 						</div>
 						{signInError}
-						<input className='w-full max-w-xs text-white btn' type="submit" value="Login" />
+						<input className='w-full max-w-xs text-white btn' type="submit" value="Sign Up" />
 					</form>
-					<p className='text-center'><small>New to Doctor portal <Link to='/signup' className='text-green-400 '>Create account</Link> </small></p>
+					<p className='text-center'><small>old to Doctor portal <Link to='/login' className='text-green-400 '>Login</Link> </small></p>
 					<div className="divider">OR</div>
 					<button onClick={() => signInWithGoogle()} className="mb-2 btn btn-outline">Continue with Google</button>
 				</div>
@@ -85,4 +97,4 @@ const Login = () => {
 	);
 };
 
-export default Login;
+export default SignUp;

@@ -11,6 +11,7 @@ import Contacts from "./Pages/Contacts/Contacts";
 import Reviews from "./Pages/Reviews/Reviews";
 import Footer from "./Pages/Shared/Footer";
 import Login from "./Pages/Login/Login";
+import SignUp from "./Pages/Login/SignUp";
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
         <Route path="/about" element={<About />} />
         <Route path="/appointment" element={<Appointment />} />
