@@ -1,7 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from '../../firebase.init';
+import { signOut } from 'firebase/auth';
 
 const Navbar = () => {
+	const [user] = useAuthState(auth);
+	console.log(user);
+
+	const logout = () => {
+		signOut(auth);
+	}
 	return (
 		<div className="navbar bg-base-100">
 			<div className="navbar-start">
@@ -15,8 +24,7 @@ const Navbar = () => {
 						<li><Link to='/appointment'>Appointment</Link></li>
 						<li><Link to='/reviews'>Reviews</Link></li>
 						<li><Link to='/contacts'>Contacts Us</Link></li>
-						<li><Link to='/signUp'>Sign Up</Link></li>
-						<li><Link to='/login'>Login</Link></li>
+						<li>{user && user?.uid ? <button onClick={logout()} className="btn btn-success">Sign Out</button> : <Link to='/login'>Login</Link>}</li>
 					</ul>
 				</div>
 				<Link to='/' className="text-xl normal-case btn btn-ghost">Doctor Portal</Link>
@@ -28,8 +36,7 @@ const Navbar = () => {
 					<li><Link to='/appointment'>Appointment</Link></li>
 					<li><Link to='/reviews'>Reviews</Link></li>
 					<li><Link to='/contacts'>Contacts Us</Link></li>
-					<li><Link to='/signUp'>Sign Up</Link></li>
-					<li><Link to='/login'>Login</Link></li>
+					<li>{user?.email ? <button className="btn btn-success">SignOut</button> : <Link to='/login'>Login</Link>}</li>
 				</ul>
 			</div>
 		</div>
