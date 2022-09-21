@@ -13,6 +13,7 @@ import Footer from "./Pages/Shared/Footer";
 import Login from "./Pages/Login/Login";
 import SignUp from "./Pages/Login/SignUp";
 import RequireAuth from "./Pages/Login/RequireAuth";
+import ForgetPassword from "./Pages/Login/ForgetPassword";
 
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
             <Appointment />
           </RequireAuth>
         } />
+        <Route path="/forgetpassword" element={<ForgetPassword />} />
         <Route path="/contacts" element={<Contacts />} />
         <Route path="/reviews" element={<Reviews />} />
         <Route path="*" element={<NotFound />} />

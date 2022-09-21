@@ -30,6 +30,10 @@ const Login = () => {
 		}
 	}, [user, gUser, from, navigate]);
 
+	const handleForgetPassword = () => {
+		navigate('/forgetpassword');
+	};
+
 	let signInError;
 
 	if (loading || gLoading) {
@@ -80,6 +84,7 @@ const Login = () => {
 							<label className="label">
 								{errors.password?.type === 'required' && <span className="text-red-500 label-text-alt">{errors.password.message}</span>}
 								{errors.password?.type === 'minLength' && <span className="text-red-500 label-text-alt">{errors.password.message}</span>}
+								<p className="text-sm cursor-pointer label-text-alt text-cyan-300 text-end" onClick={handleForgetPassword} >Forget Password ?</p>
 							</label>
 						</div>
 						{signInError}
