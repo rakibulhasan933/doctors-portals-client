@@ -24,7 +24,7 @@ const Navbar = () => {
 						<li><Link to='/appointment'>Appointment</Link></li>
 						<li><Link to='/reviews'>Reviews</Link></li>
 						<li><Link to='/contacts'>Contacts Us</Link></li>
-						<li>{user && user?.uid ? <button onClick={logout()} className="btn btn-success">Sign Out</button> : <Link to='/login'>Login</Link>}</li>
+						<li>{user ? <button onClick={logout} className="btn btn-success">Sign Out</button> : <Link to='/login'>Login</Link>}</li>
 					</ul>
 				</div>
 				<Link to='/' className="text-xl normal-case btn btn-ghost">Doctor Portal</Link>
@@ -36,7 +36,7 @@ const Navbar = () => {
 					<li><Link to='/appointment'>Appointment</Link></li>
 					<li><Link to='/reviews'>Reviews</Link></li>
 					<li><Link to='/contacts'>Contacts Us</Link></li>
-					<li>{user?.email ? <button className="btn btn-success">SignOut</button> : <Link to='/login'>Login</Link>}</li>
+					<li>{user ? <button onClick={logout} className="btn btn-success">Sign Out</button> : <Link to='/login'>Login</Link>}</li>
 				</ul>
 			</div>
 		</div>

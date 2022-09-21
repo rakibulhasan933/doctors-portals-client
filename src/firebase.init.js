@@ -1,14 +1,13 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 
-
 const firebaseConfig = {
-	apiKey: "AIzaSyCPfmzNiV95zUyHPTLaelZ3VlkaxTWPEMA",
-	authDomain: "walker-doctors.firebaseapp.com",
-	projectId: "walker-doctors",
-	storageBucket: "walker-doctors.appspot.com",
-	messagingSenderId: "1026836872325",
-	appId: "1:1026836872325:web:b21b463aaf28e719957dec"
+	apiKey: "AIzaSyATeDUqgm0XgEhWd1ajxWIUpnBldwW3UyI",
+	authDomain: "doctors-walker.firebaseapp.com",
+	projectId: "doctors-walker",
+	storageBucket: "doctors-walker.appspot.com",
+	messagingSenderId: "603574247845",
+	appId: "1:603574247845:web:759ce276691de2b5c1884c"
 };
 
 // Initialize Firebase

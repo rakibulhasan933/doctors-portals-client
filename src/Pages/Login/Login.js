@@ -8,18 +8,18 @@ import { Link } from 'react-router-dom';
 
 const Login = () => {
 	const [
-		signInWithEmailAndPassword,
+		signInWithEmailAndPassword, ,
 		user,
 		loading,
 		error,
 	] = useSignInWithEmailAndPassword(auth);
-	let signInError;
 
 	const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
 	const { register, handleSubmit, formState: { errors } } = useForm();
 	const onSubmit = data => {
 		signInWithEmailAndPassword(data.email, data.password)
 	};
+	let signInError;
 
 	if (loading || gLoading) {
 		return <Loading />
