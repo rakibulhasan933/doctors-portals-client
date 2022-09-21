@@ -4,10 +4,13 @@ import { DayPicker } from 'react-day-picker';
 import 'react-day-picker/dist/style.css';
 import bg from '../../assets/images/bg.png';
 import { format } from 'date-fns';
+import auth from '../../firebase.init';
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 
 const BannerAppointment = () => {
 	const [services, setServices] = useState([]);
+	const [user] = useAuthState(auth);
 	useEffect(() => {
 		fetch('http://localhost:5000/services')
 			.then(res => res.json())
@@ -25,7 +28,9 @@ const BannerAppointment = () => {
 		const slot = event.target.slot.value;
 		const date = event.target.date.value;
 		const phone = event.target.phoneNumber.value;
-		console.log('Date', date, 'Time', slot, 'number', phone, 'services', services);
+		const userName = event.target.name?.value;
+		const email = event.target.email?.value;
+		console.log('Date', date, 'Time', slot, 'number', phone, 'services', services, email, userName);
 		setTreatment(null);
 	}
 
@@ -76,6 +81,8 @@ const BannerAppointment = () => {
 										</option>)
 									}
 								</select>
+								<input type="name" name="name" disabled value={user?.displayName || ''} className="w-full max-w-xs input input-bordered" required />
+								<input type="email" name="email" disabled value={user?.email || ''} className="w-full max-w-xs input input-bordered" required />
 								<input type="number" name="phoneNumber" placeholder="Phone" className="w-full max-w-xs input input-bordered" required />
 								<input type="submit" value="Submit" className="w-full max-w-xs font-semibold uppercase cursor-pointer input input-bordered bg-cyan-300" />
 							</form>
