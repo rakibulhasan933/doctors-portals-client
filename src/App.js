@@ -14,6 +14,9 @@ import Login from "./Pages/Login/Login";
 import SignUp from "./Pages/Login/SignUp";
 import RequireAuth from "./Pages/Login/RequireAuth";
 import ForgetPassword from "./Pages/Login/ForgetPassword";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 
 function App() {
@@ -35,6 +38,7 @@ function App() {
         <Route path="/reviews" element={<Reviews />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
+      <ToastContainer />
       <Footer />
     </div>
   );
