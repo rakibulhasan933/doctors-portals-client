@@ -6,6 +6,7 @@ import bg from '../../assets/images/bg.png';
 import { format } from 'date-fns';
 import auth from '../../firebase.init';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import axios from 'axios';
 
 
 const BannerAppointment = () => {
@@ -24,14 +25,30 @@ const BannerAppointment = () => {
 
 	const handleBookingFrom = (event) => {
 		event.preventDefault();
-		const services = treatment?.name;
+		const servicesName = treatment?.name;
 		const slot = event.target.slot.value;
 		const date = event.target.date.value;
 		const phone = event.target.phoneNumber.value;
-		const userName = event.target.name?.value;
+		const patient = event.target.name?.value;
 		const email = event.target.email?.value;
-		console.log('Date', date, 'Time', slot, 'number', phone, 'services', services, email, userName);
-		setTreatment(null);
+
+		const booking = {
+			treatmentId: treatment?._id,
+			treatmentName: servicesName,
+			slot,
+			date,
+			phone,
+			patient,
+			email
+		};
+		axios.post('http://localhost:5000/booking', booking)
+			.then(function (response) {
+				console.log(response);
+				setTreatment(null);
+			})
+			.catch(function (error) {
+				console.log(error);
+			});
 	}
 
 	return (
