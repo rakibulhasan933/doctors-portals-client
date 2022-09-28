@@ -7,6 +7,7 @@ import { format } from 'date-fns';
 import auth from '../../firebase.init';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 
 const BannerAppointment = () => {
@@ -41,13 +42,21 @@ const BannerAppointment = () => {
 			patient,
 			email
 		};
-		axios.post('http://localhost:5000/booking', booking)
-			.then(function (response) {
-				console.log(response);
+		fetch('http://localhost:5000/booking', {
+			method: 'POST',
+			headers: {
+				'content-type': 'application/json'
+			},
+			body: JSON.stringify(booking)
+		})
+			.then(res => res.json())
+			.then(data => {
+				if (data.success) {
+					toast(`Appointment is set, ${formattedDate} at ${slot}`)
+				} else {
+					toast.error(`Already have and appointment on ${data.booking?.date} at ${data.booking?.slot}`)
+				}
 				setTreatment(null);
-			})
-			.catch(function (error) {
-				console.log(error);
 			});
 	}
 

@@ -38,8 +38,8 @@ function App() {
         <Route path="/reviews" element={<Reviews />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
-      <ToastContainer />
       <Footer />
+      <ToastContainer />
     </div>
   );
 }
