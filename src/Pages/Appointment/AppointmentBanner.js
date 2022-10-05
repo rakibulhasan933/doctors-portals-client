@@ -6,7 +6,6 @@ import bg from '../../assets/images/bg.png';
 import { format } from 'date-fns';
 import auth from '../../firebase.init';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import axios from 'axios';
 import { toast } from 'react-toastify';
 
 
