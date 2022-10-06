@@ -7,6 +7,8 @@ import { format } from 'date-fns';
 import auth from '../../firebase.init';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { toast } from 'react-toastify';
+import { useQuery } from 'react-query';
+import Loading from '../Shared/Loading';
 
 
 const BannerAppointment = () => {
@@ -17,6 +19,12 @@ const BannerAppointment = () => {
 			.then(res => res.json())
 			.then(data => setServices(data))
 	}, []);
+	// const { isLoading, data: services, refetch } = useQuery(['available', formattedDate, () => fetch(`http://localhost:5000/available?date=${formattedDate}`)
+	// 	.then(res => res.json())]);
+
+	// if (isLoading) {
+	// 	return <Loading></Loading>
+	// }
 
 	const [date, setDate] = useState(new Date());
 	const [treatment, setTreatment] = useState();
@@ -55,6 +63,7 @@ const BannerAppointment = () => {
 				} else {
 					toast.error(`Already have and appointment on ${data.booking?.date} at ${data.booking?.slot}`)
 				}
+				refetch();
 				setTreatment(null);
 			});
 	}
