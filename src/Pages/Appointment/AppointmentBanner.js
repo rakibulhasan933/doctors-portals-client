@@ -63,7 +63,7 @@ const BannerAppointment = () => {
 				} else {
 					toast.error(`Already have and appointment on ${data.booking?.date} at ${data.booking?.slot}`)
 				}
-				refetch();
+				// refetch();
 				setTreatment(null);
 			});
 	}
