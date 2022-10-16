@@ -62,7 +62,7 @@ const BookingModal = ({ date, treatment, setTreatment, refetch }) => {
 						</select>
 						<input type="text" name="name" disabled value={user?.displayName || ''} className="w-full max-w-xs input input-bordered" />
 						<input type="email" name="email" disabled value={user?.email || ''} className="w-full max-w-xs input input-bordered" />
-						<input type="text" name="phone" placeholder="Phone Number" className="w-full max-w-xs input input-bordered" />
+						<input type="text" name="phone" placeholder="Phone Number" className="w-full max-w-xs input input-bordered" required />
 						<input type="submit" value="Submit" className="w-full max-w-xs btn btn-secondary" />
 					</form>
 				</div>
