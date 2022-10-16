@@ -23,7 +23,7 @@ const BookingModal = ({ date, treatment, setTreatment, refetch }) => {
 			phone: event.target.phone.value
 		}
 
-		fetch('https://secret-dusk-46242.herokuapp.com/booking', {
+		fetch('http://localhost:5000/booking', {
 			method: 'POST',
 			headers: {
 				'content-type': 'application/json'
@@ -32,6 +32,7 @@ const BookingModal = ({ date, treatment, setTreatment, refetch }) => {
 		})
 			.then(res => res.json())
 			.then(data => {
+				console.log(data);
 				if (data.success) {
 					toast(`Appointment is set, ${formattedDate} at ${slot}`)
 				}
