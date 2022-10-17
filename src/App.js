@@ -20,6 +20,8 @@ import Dashboard from "./Pages/Dashboard/Dashboard";
 import MyAppointment from "./Pages/Dashboard/MyAppointment";
 import MyReviews from "./Pages/Dashboard/MyReviews";
 import MyHistory from "./Pages/Dashboard/MyHistory";
+import Users from "./Pages/Dashboard/Users";
+import Bookings from "./Pages/Dashboard/Bookings";
 
 
 
@@ -41,6 +43,8 @@ function App() {
           <Route index element={<MyAppointment />} />
           <Route path="review" element={<MyReviews />} />
           <Route path="history" element={<MyHistory />} />
+          <Route path="bookings" element={<Bookings />} />
+          <Route path="users" element={<Users />} />
         </Route>
         <Route path="/forgetpassword" element={<ForgetPassword />} />
         <Route path="/contacts" element={<Contacts />} />
