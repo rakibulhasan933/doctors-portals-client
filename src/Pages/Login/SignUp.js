@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import Loading from '../Shared/Loading';
 import { Link, useNavigate } from 'react-router-dom';
 import useToken from '../../hooks/useToken';
+import { toast } from 'react-toastify';
 
 
 const SignUp = () => {
@@ -26,8 +27,8 @@ const SignUp = () => {
 	const onSubmit = async (data) => {
 		await createUserWithEmailAndPassword(data.email, data.password);
 		await updateProfile({ displayName: data.name });
-		await sendEmailVerification()
-		alert('Your Registration Successfully ,send email verification user');
+		await sendEmailVerification();
+		toast('Your Registration Successfully, Send email verification user');
 	};
 	const navigate = useNavigate();
 
