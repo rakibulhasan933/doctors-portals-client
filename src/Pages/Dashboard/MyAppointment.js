@@ -1,3 +1,4 @@
+import { signOut } from 'firebase/auth';
 import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
@@ -20,6 +21,8 @@ const MyAppointment = () => {
 				.then(res => {
 					console.log(res);
 					if (res.status === 401 || res.status === 403) {
+						signOut(auth);
+						localStorage.removeItem('accessToken');
 						navigate('/')
 					}
 					return res.json()
