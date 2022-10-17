@@ -2,6 +2,7 @@ import React from 'react';
 import { useSendPasswordResetEmail } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
 import Loading from '../Shared/Loading';
 
@@ -13,7 +14,7 @@ const ForgetPassword = () => {
 
 	const onSubmit = async (data) => {
 		await sendPasswordResetEmail(data?.email)
-		alert('send email');
+		toast('Send Email , Inbox')
 		navigate('/login');
 	}
 	if (sending) {
