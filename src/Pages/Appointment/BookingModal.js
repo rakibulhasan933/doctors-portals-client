@@ -3,10 +3,15 @@ import React from 'react';
 import { toast } from 'react-toastify';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
+import Loading from '../Shared/Loading';
 
 const BookingModal = ({ date, treatment, setTreatment, refetch }) => {
 	const { _id, name, slots, price } = treatment;
-	const [user, loading, error] = useAuthState(auth);
+	const [user, loading] = useAuthState(auth);
+
+	if (loading) {
+		return <Loading />
+	}
 	const formattedDate = format(date, 'PP');
 	const handleBooking = event => {
 		event.preventDefault();
