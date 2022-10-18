@@ -5,8 +5,8 @@ const UsersRow = ({ booking, index }) => {
 		<tr>
 			<th>{index + 1}</th>
 			<td>{booking?.email}</td>
-			<td>Quality Control Specialist</td>
-			<td>Blue</td>
+			<td><button className="btn btn-outline">Make a Admin</button></td>
+			<td><button className="btn btn-outline btn-error">Remove User</button></td>
 		</tr>
 	);
 };

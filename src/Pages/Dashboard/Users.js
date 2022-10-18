@@ -4,7 +4,12 @@ import Loading from '../Shared/Loading';
 import UsersRow from './UsersRow';
 
 const Users = () => {
-	const { data: users, isLoading } = useQuery(['users'], () => fetch('http://localhost:5000/users')
+	const { data: users, isLoading } = useQuery(['users'], () => fetch('http://localhost:5000/users', {
+		method: 'GET',
+		headers: {
+			authorization: `Bearer ${localStorage.getItem('accessToken')}`
+		}
+	})
 		.then(res => res.json()))
 
 	if (isLoading) {
@@ -16,14 +21,14 @@ const Users = () => {
 				<thead>
 					<tr>
 						<th></th>
-						<th>Name</th>
 						<th>Email</th>
-						<th>Deleted Account</th>
+						<th>Status</th>
+						<th>Account</th>
 					</tr>
 				</thead>
 				<tbody>
 					{
-						users.map((booking, index) => <UsersRow key={booking._id} booking={booking} index={index} ></UsersRow>)
+						users?.map((booking, index) => <UsersRow key={booking._id} booking={booking} index={index} ></UsersRow>)
 					}
 				</tbody>
 			</table>
