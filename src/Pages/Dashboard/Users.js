@@ -4,7 +4,7 @@ import Loading from '../Shared/Loading';
 import UsersRow from './UsersRow';
 
 const Users = () => {
-	const { data: users, isLoading } = useQuery(['users'], () => fetch('http://localhost:5000/users', {
+	const { data: users, isLoading, refetch } = useQuery(['users'], () => fetch('http://localhost:5000/users', {
 		method: 'GET',
 		headers: {
 			authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -28,7 +28,7 @@ const Users = () => {
 				</thead>
 				<tbody>
 					{
-						users?.map((booking, index) => <UsersRow key={booking._id} booking={booking} index={index} ></UsersRow>)
+						users?.map((user, index) => <UsersRow key={user._id} user={user} refetch={refetch} index={index} ></UsersRow>)
 					}
 				</tbody>
 			</table>
