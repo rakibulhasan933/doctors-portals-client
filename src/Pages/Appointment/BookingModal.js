@@ -37,7 +37,6 @@ const BookingModal = ({ date, treatment, setTreatment, refetch }) => {
 		})
 			.then(res => res.json())
 			.then(data => {
-				console.log(data);
 				if (data.success) {
 					toast(`Appointment is set, ${formattedDate} at ${slot}`)
 				}
