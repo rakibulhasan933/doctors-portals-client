@@ -23,6 +23,7 @@ import MyHistory from "./Pages/Dashboard/MyHistory";
 import Users from "./Pages/Dashboard/Users";
 import Bookings from "./Pages/Dashboard/Bookings";
 import RequireAdmin from "./Pages/Login/RequireAdmin";
+import AddDoctor from "./Pages/Dashboard/AddDoctor";
 
 
 
@@ -46,8 +47,9 @@ function App() {
           <Route path="history" element={<MyHistory />} />
           <Route path="bookings" element={<RequireAdmin><Bookings /></RequireAdmin>} />
           <Route path="users" element={<RequireAdmin><Users /></RequireAdmin>} />
+          <Route path="add_doctor" element={<RequireAdmin><AddDoctor /></RequireAdmin>} />
         </Route>
-        <Route path="/forgetpassword" element={<ForgetPassword />} />
+        <Route path="/forget_password" element={<ForgetPassword />} />
         <Route path="/contacts" element={<Contacts />} />
         <Route path="/reviews" element={<Reviews />} />
         <Route path="*" element={<NotFound />} />

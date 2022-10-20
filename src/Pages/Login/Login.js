@@ -34,7 +34,7 @@ const Login = () => {
 	}, [token, from, navigate]);
 
 	const handleForgetPassword = () => {
-		navigate('/forgetpassword');
+		navigate('/forget_password');
 	};
 
 	let signInError;
