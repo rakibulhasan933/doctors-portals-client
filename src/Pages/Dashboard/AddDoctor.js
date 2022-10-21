@@ -10,9 +10,32 @@ const AddDoctor = () => {
 	if (isLoading) {
 		return <Loading />
 	}
+
+	const ImageStorageKey = '653e47c04775bf54b071a6f09142d5a0';
+
 	const onSubmit = async (data) => {
-		console.log(data);
-		toast('Your Registration Successfully, Send email verification user');
+		const image = data.image[0];
+		const formData = new FormData();
+		formData.append('image', image);
+		const url = `https://api.imgbb.com/1/upload?key=${ImageStorageKey}`;
+		fetch(url, {
+			method: 'POST',
+			body: formData
+		})
+			.then(res => res.json())
+			.then(result => {
+				if (result.success) {
+					const img = result.data.url;
+					const doctor = {
+						name: data.name,
+						email: data.email,
+						specialty: data.specialty,
+						img: img
+					}
+					console.log(doctor);
+					// POST DOCTOR DATA
+				}
+			})
 	};
 	return (
 		<div>
@@ -56,6 +79,18 @@ const AddDoctor = () => {
 							services?.map(service => <option key={service?._id} value={service.name}>{service.name}</option>)
 						}
 					</select>
+					<label className="label">
+						<span className="label-text">Photo Upload</span>
+					</label>
+					<input type="file" className="w-full max-w-xs input" {...register("image", {
+						required: {
+							value: true,
+							message: 'Image is Required'
+						}
+					})} />
+					<label className="label">
+						{errors.image?.type === 'required' && <span className="text-red-500 label-text-alt">{errors.image?.message}</span>}
+					</label>
 				</div>
 				<input className='w-full max-w-xs text-white btn' type="submit" value="Add Doctor" />
 			</form>
