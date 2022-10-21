@@ -1,11 +1,17 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { useQuery } from 'react-query';
 import { toast } from 'react-toastify';
+import Loading from '../Shared/Loading';
 
 const AddDoctor = () => {
 	const { register, handleSubmit, formState: { errors } } = useForm();
+	const { data: services, isLoading } = useQuery('services', () => fetch('http://localhost:5000/services').then(res => res.json()));
+	if (isLoading) {
+		return <Loading />
+	}
 	const onSubmit = async (data) => {
-
+		console.log(data);
 		toast('Your Registration Successfully, Send email verification user');
 	};
 	return (
@@ -45,15 +51,11 @@ const AddDoctor = () => {
 					<label className="label">
 						<span className="label-text">Specialty</span>
 					</label>
-					<input placeholder='specialty' type="text" className="w-full max-w-xs input input-bordered" {...register("specialty", {
-						required: {
-							value: true,
-							message: 'Specialty is Required'
-						},
-					})} />
-					<label className="label">
-						{errors.specialty?.type === 'required' && <span className="text-red-500 label-text-alt">{errors.specialty?.message}</span>}
-					</label>
+					<select {...register("specialty")} className="w-full max-w-xs select">
+						{
+							services?.map(service => <option key={service?._id} value={service.name}>{service.name}</option>)
+						}
+					</select>
 				</div>
 				<input className='w-full max-w-xs text-white btn' type="submit" value="Add Doctor" />
 			</form>
