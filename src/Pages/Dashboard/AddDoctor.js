@@ -34,6 +34,24 @@ const AddDoctor = () => {
 					}
 					console.log(doctor);
 					// POST DOCTOR DATA
+					fetch('http://localhost:5000/doctor', {
+						method: 'POST',
+						headers: {
+							'content-type': 'application/json',
+							authorization: `Bearer ${localStorage.getItem('accessToken')}`
+						},
+						body: JSON.stringify(doctor)
+					})
+						.then(res => res.json())
+						.then(inserted => {
+							console.log('doctor', inserted);
+							if (inserted.insertedId) {
+								toast.success('Doctor added successfully')
+							}
+							else {
+								toast.error('Failed to add the doctor')
+							}
+						});
 				}
 			})
 	};
