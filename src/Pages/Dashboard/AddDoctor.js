@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 import Loading from '../Shared/Loading';
 
 const AddDoctor = () => {
-	const { register, handleSubmit, formState: { errors } } = useForm();
+	const { register, handleSubmit, formState: { errors }, reset } = useForm();
 	const { data: services, isLoading } = useQuery('services', () => fetch('http://localhost:5000/services').then(res => res.json()));
 	if (isLoading) {
 		return <Loading />
@@ -46,7 +46,8 @@ const AddDoctor = () => {
 						.then(inserted => {
 							console.log('doctor', inserted);
 							if (inserted.insertedId) {
-								toast.success('Doctor added successfully')
+								toast.success('Doctor added successfully');
+								reset();
 							}
 							else {
 								toast.error('Failed to add the doctor')
