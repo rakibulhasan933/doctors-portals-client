@@ -24,6 +24,7 @@ import Users from "./Pages/Dashboard/Users";
 import Bookings from "./Pages/Dashboard/Bookings";
 import RequireAdmin from "./Pages/Login/RequireAdmin";
 import AddDoctor from "./Pages/Dashboard/AddDoctor";
+import ManageDoctor from "./Pages/Dashboard/ManageDoctor";
 
 
 
@@ -48,6 +49,7 @@ function App() {
           <Route path="bookings" element={<RequireAdmin><Bookings /></RequireAdmin>} />
           <Route path="users" element={<RequireAdmin><Users /></RequireAdmin>} />
           <Route path="add_doctor" element={<RequireAdmin><AddDoctor /></RequireAdmin>} />
+          <Route path="manage_doctor" element={<RequireAdmin><ManageDoctor /></RequireAdmin>} />
         </Route>
         <Route path="/forget_password" element={<ForgetPassword />} />
         <Route path="/contacts" element={<Contacts />} />
