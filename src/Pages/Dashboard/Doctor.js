@@ -12,7 +12,6 @@ const Doctor = ({ doctor, index, refetch }) => {
 		})
 			.then(res => res.json())
 			.then(data => {
-				console.log('deleted', data);
 				if (data.deletedCount) {
 					toast.success('Doctor Deleted successfully');
 					refetch();
