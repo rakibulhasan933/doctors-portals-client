@@ -3,7 +3,7 @@ import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 
 const MyAppointment = () => {
@@ -52,6 +52,7 @@ const MyAppointment = () => {
 								<td>{a.date}</td>
 								<td>{a.slot}</td>
 								<td>{a.treatment}</td>
+								<td>{(a.paid) ? <span className='text-success'>Paid</span> : <Link to={`/dashboard/payment/${a._id}`}> <button className=' btn btn-xs btn-success' >Pay</button> </Link>}</td>
 							</tr>)
 						}
 
