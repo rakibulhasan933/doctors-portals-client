@@ -2,17 +2,20 @@ import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
+import Loading from '../Shared/Loading';
 
 const CheckoutFrom = ({ appointment }) => {
 	const [cardError, setCardError] = useState('');
 	const [clientSecret, setClientSecret] = useState('');
 	const [success, setSuccess] = useState('');
+	const [processing, setProcessing] = useState(false);
 	const [transactionId, setTransactionId] = useState('');
 
 	const stripe = useStripe();
 	const elements = useElements();
 
-	const { patientName, price, email } = appointment;
+	const { _id, treatment, date, slot, patientName, price, email } = appointment;
+
 
 	useEffect(() => {
 		fetch('http://localhost:5000/create-payment-intent', {
@@ -48,6 +51,9 @@ const CheckoutFrom = ({ appointment }) => {
 		});
 
 		setCardError(error?.message || '');
+		setSuccess('');
+		setProcessing(true);
+		// payment
 		const { paymentIntent, error: IntentError } = await stripe.confirmCardPayment(
 			clientSecret,
 			{
@@ -62,11 +68,36 @@ const CheckoutFrom = ({ appointment }) => {
 		);
 		if (IntentError) {
 			setCardError(IntentError?.message);
+			setSuccess('');
+			setProcessing(false);
 		}
 		else {
 			setCardError('');
-			setTransactionId(paymentMethod?.id);
+			setTransactionId(paymentIntent?.id);
 			setSuccess('Your Payment is successfully');
+			const payment = {
+				name: patientName,
+				email: email,
+				appointment: _id,
+				transactionId: paymentIntent?.id,
+				service: treatment,
+				date,
+				slot
+			}
+			// database send
+			fetch(`http://localhost:5000/booking/${_id}`, {
+				method: 'PATCH',
+				headers: {
+					'content-type': 'application/json',
+					authorization: `Bearer ${localStorage.getItem('accessToken')}`
+				},
+				body: JSON.stringify(payment)
+
+			}).then(res => res.json())
+				.then(data => {
+					setProcessing(false);
+					console.log(data)
+				})
 		}
 
 	}
