@@ -25,6 +25,7 @@ import Bookings from "./Pages/Dashboard/Bookings";
 import RequireAdmin from "./Pages/Login/RequireAdmin";
 import AddDoctor from "./Pages/Dashboard/AddDoctor";
 import ManageDoctor from "./Pages/Dashboard/ManageDoctor";
+import Payment from "./Pages/Dashboard/Payment";
 
 
 
@@ -46,6 +47,7 @@ function App() {
           <Route index element={<MyAppointment />} />
           <Route path="review" element={<MyReviews />} />
           <Route path="history" element={<MyHistory />} />
+          <Route path="payment/:id" element={<Payment />} />
           <Route path="bookings" element={<RequireAdmin><Bookings /></RequireAdmin>} />
           <Route path="users" element={<RequireAdmin><Users /></RequireAdmin>} />
           <Route path="add_doctor" element={<RequireAdmin><AddDoctor /></RequireAdmin>} />
