@@ -37,7 +37,7 @@ const Payment = () => {
 			<div className="w-full shadow-xl card bg-base-100">
 				<div className="card-body">
 					<Elements stripe={stripePromise}>
-						<CheckoutFrom />
+						<CheckoutFrom appointment={appointment} />
 					</Elements>
 				</div>
 			</div>
