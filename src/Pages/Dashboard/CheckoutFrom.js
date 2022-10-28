@@ -121,7 +121,7 @@ const CheckoutFrom = ({ appointment }) => {
 						},
 					}}
 				/>
-				<button className='mt-4 btn btn-success btn-sm' type="submit" disabled={!stripe || !clientSecret}>
+				<button className='mt-4 btn btn-success btn-sm' type="submit" disabled={!stripe || !clientSecret || success}>
 					Pay
 				</button>
 			</form>

@@ -27,6 +27,7 @@ const Bookings = () => {
 							<th>Time</th>
 							<th>Treatment</th>
 							<th>Payment</th>
+							<th>Transaction ID</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -38,6 +39,8 @@ const Bookings = () => {
 								<td>{a.date}</td>
 								<td>{a.slot}</td>
 								<td>{a.treatment}</td>
+								<td>{(a.paid) ? <span className='text-success'>Paid</span> : <p className='text-red-500'>not Paid</p>}</td>
+								<td>{(a?.transactionId) && <p className='text-green-500'>{a.transactionId}</p>} </td>
 							</tr>)
 						}
 
