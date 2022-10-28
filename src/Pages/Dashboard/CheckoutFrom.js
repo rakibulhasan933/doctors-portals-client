@@ -2,7 +2,7 @@ import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import Loading from '../Shared/Loading';
+import { toast } from 'react-toastify';
 
 const CheckoutFrom = ({ appointment }) => {
 	const [cardError, setCardError] = useState('');
@@ -68,6 +68,7 @@ const CheckoutFrom = ({ appointment }) => {
 		);
 		if (IntentError) {
 			setCardError(IntentError?.message);
+			toast.error('Payment Fail Please Try Again');
 			setSuccess('');
 			setProcessing(false);
 		}
@@ -96,7 +97,7 @@ const CheckoutFrom = ({ appointment }) => {
 			}).then(res => res.json())
 				.then(data => {
 					setProcessing(false);
-					console.log(data)
+					toast.success('Your payment Successfully');
 				})
 		}
 
