@@ -15,11 +15,11 @@ const BannerAppointment = () => {
 	const [services, setServices] = useState([]);
 	const [user] = useAuthState(auth);
 	useEffect(() => {
-		fetch('http://localhost:5000/services')
+		fetch('https://doctors-portal-server-tau.vercel.app/services')
 			.then(res => res.json())
 			.then(data => setServices(data))
 	}, []);
-	// const { isLoading, data: services, refetch } = useQuery(['available', formattedDate, () => fetch(`http://localhost:5000/available?date=${formattedDate}`)
+	// const { isLoading, data: services, refetch } = useQuery(['available', formattedDate, () => fetch(`https://doctors-portal-server-tau.vercel.app/available?date=${formattedDate}`)
 	// 	.then(res => res.json())]);
 
 	// if (isLoading) {
@@ -49,7 +49,7 @@ const BannerAppointment = () => {
 			patient,
 			email
 		};
-		fetch('http://localhost:5000/booking', {
+		fetch('https://doctors-portal-server-tau.vercel.app/booking', {
 			method: 'POST',
 			headers: {
 				'content-type': 'application/json'

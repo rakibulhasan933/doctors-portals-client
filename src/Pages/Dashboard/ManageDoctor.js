@@ -8,7 +8,7 @@ import Doctor from './Doctor';
 const ManageDoctor = () => {
 
 	const [deleteDoctor, setDeleteDoctor] = useState(null);
-	const { data: doctors, isLoading, refetch } = useQuery('doctors', () => fetch('http://localhost:5000/doctors', {
+	const { data: doctors, isLoading, refetch } = useQuery('doctors', () => fetch('https://doctors-portal-server-tau.vercel.app/doctors', {
 		headers: {
 			authorization: `Bearer ${localStorage.getItem('accessToken')}`
 		}

@@ -6,7 +6,7 @@ import Loading from '../Shared/Loading';
 
 const AddDoctor = () => {
 	const { register, handleSubmit, formState: { errors }, reset } = useForm();
-	const { data: services, isLoading } = useQuery('services', () => fetch('http://localhost:5000/services').then(res => res.json()));
+	const { data: services, isLoading } = useQuery('services', () => fetch('https://doctors-portal-server-tau.vercel.app/services').then(res => res.json()));
 	if (isLoading) {
 		return <Loading />
 	}
@@ -34,7 +34,7 @@ const AddDoctor = () => {
 					}
 					console.log(doctor);
 					// POST DOCTOR DATA
-					fetch('http://localhost:5000/doctor', {
+					fetch('https://doctors-portal-server-tau.vercel.app/doctor', {
 						method: 'POST',
 						headers: {
 							'content-type': 'application/json',

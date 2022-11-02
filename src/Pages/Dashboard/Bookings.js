@@ -3,7 +3,7 @@ import { useQuery } from 'react-query';
 import Loading from '../Shared/Loading';
 
 const Bookings = () => {
-	const { data: bookings, isLoading } = useQuery(['bookings'], () => fetch('http://localhost:5000/bookings', {
+	const { data: bookings, isLoading } = useQuery(['bookings'], () => fetch('https://doctors-portal-server-tau.vercel.app/bookings', {
 		method: 'GET',
 		headers: {
 			authorization: `Bearer ${localStorage.getItem('accessToken')}`
