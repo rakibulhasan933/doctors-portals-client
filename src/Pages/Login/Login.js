@@ -9,7 +9,7 @@ import useToken from '../../hooks/useToken';
 
 const Login = () => {
 	const [
-		signInWithEmailAndPassword, ,
+		signInWithEmailAndPassword,
 		user,
 		loading,
 		error,
@@ -20,7 +20,7 @@ const Login = () => {
 
 	const { register, handleSubmit, formState: { errors } } = useForm();
 	const onSubmit = data => {
-		signInWithEmailAndPassword(data.email, data.password)
+		signInWithEmailAndPassword(data.email, data.password);
 	};
 	const navigate = useNavigate();
 	const location = useLocation();
