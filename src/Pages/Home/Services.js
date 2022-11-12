@@ -16,7 +16,7 @@ const Services = () => {
 						<img src={truth} alt="Shoes" className="rounded-xl" />
 					</figure>
 					<div className="items-center text-center card-body">
-						<h2 className="card-title">Shoes!</h2>
+						<h2 className="card-title">Truth Cleaning!</h2>
 						<p>If a dog chews shoes whose shoes does he choose?</p>
 					</div>
 				</div>
@@ -25,7 +25,7 @@ const Services = () => {
 						<img src={fluoride} alt="Shoes" className="rounded-xl" />
 					</figure>
 					<div className="items-center text-center card-body">
-						<h2 className="card-title">Shoes!</h2>
+						<h2 className="card-title">fluoride!</h2>
 						<p>If a dog chews shoes whose shoes does he choose?</p>
 					</div>
 				</div>
@@ -34,7 +34,7 @@ const Services = () => {
 						<img src={Cavity} alt="Shoes" className="rounded-xl" />
 					</figure>
 					<div className="items-center text-center card-body">
-						<h2 className="card-title">Shoes!</h2>
+						<h2 className="card-title">Cavity!</h2>
 						<p>If a dog chews shoes whose shoes does he choose?</p>
 					</div>
 				</div>
